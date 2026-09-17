@@ -11,7 +11,7 @@ description: 在当前项目中创建或迁移项目级 skill。项目 skill 一
 
 - **MUST** 将项目 skill 放在 `<项目根目录>/.agents/skills/<skill-name>/SKILL.md`。
 - **MUST NOT** 使用旧版 `docs/skills/` 目录；**IF** 发现项目内存在 `docs/skills/` -> **MUST** 主动提示用户并执行迁移（见下方"旧版迁移"）。
-- **WHEN** 撰写项目内 skill（含 frontmatter 的 `name`/`description` 与正文）-> **MUST** 直接以中文撰写 `SKILL.md`（技术名词、命令、路径可保留英文原文），**MUST NOT** 额外维护 `SKILL.zh.md` 等翻译副本；**IF** 发现项目内已存在 `SKILL.zh.md` 或英文旧版 `SKILL.md` 与翻译副本并存 -> **MUST** 执行迁移（见下方"翻译副本迁移"）。
+- **WHEN** 撰写或迁移项目内 skill（含 frontmatter 的 `name`/`description` 与正文）-> **MUST** 直接以中文撰写 `SKILL.md`（技术名词、命令、路径可保留英文原文），**MUST NOT** 额外维护 `SKILL.zh.md` 等翻译副本；**IF** 发现项目内已存在 `SKILL.zh.md` 或英文旧版 `SKILL.md` 与翻译副本并存 -> **MUST** 执行迁移（见下方“翻译副本迁移”）。
 - **WHEN** 在 SKILL.md 中引用项目内路径 -> **MUST** 使用项目内相对路径，**MUST NOT** 使用绝对路径。
 
 ## 创建流程
@@ -23,6 +23,15 @@ description: 在当前项目中创建或迁移项目级 skill。项目 skill 一
    - 调用场景：什么时候应该触发这个 skill（用结构化控制词写法，如 `**WHEN** ... -> **MUST** 使用 \`<skill-name>\` skill`）；
    - **IF** 项目不存在 `AGENTS.md` -> **MUST** 新建。
 4. **验证**：确认 skill 目录结构完整、frontmatter 合法、AGENTS.md 索引与实际路径一致。
+
+## 英文旧版迁移（英文 SKILL.md -> 中文 SKILL.md）
+
+**WHEN** 在项目 skill 目录中发现 `description` 或正文为英文的 `SKILL.md`（无论是否存在翻译副本、是否正在执行其他迁移）-> **MUST** 按以下步骤就地翻译：
+
+1. 将 `description` 与正文完整译为中文，**MUST** 保留 frontmatter 的 `name` 标识与全部技术内容（命令、路径、参数、配置快照值），**MUST NOT** 借翻译之机增删规则。
+2. 语言转换是机械操作，**MUST NOT** 以「内容可能过期」「超出当前任务范围」「留待下次维护」为由保留英文版或推迟；翻译与内容时效验证是两件事，不得捆绑延迟。
+3. **IF** 翻译中发现具体内容疑点（路径不存在、命令失效、快照过期）-> **SHOULD** 当场验证后修正，无法验证的 **MUST** 在该条旁标注待核实并向用户报告，**MUST NOT** 因此搁置整个翻译。
+4. 向用户汇报翻译的 skill 清单及发现并处理的疑点。
 
 ## 翻译副本迁移（SKILL.zh.md -> 中文 SKILL.md）
 
